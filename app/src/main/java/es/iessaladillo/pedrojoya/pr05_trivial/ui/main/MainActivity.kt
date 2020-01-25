@@ -19,4 +19,16 @@ class MainActivity : AppCompatActivity() {
                 TitleFragment.newInstance())
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onBackPressed() {
+        supportFragmentManager.commit {
+            replace(R.id.fcContent,
+                TitleFragment.newInstance())
+        }
+    }
 }

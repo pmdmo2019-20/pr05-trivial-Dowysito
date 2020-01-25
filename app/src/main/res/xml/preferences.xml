@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SeekBarPreference
+        android:id="@+id/seekQuestion"
+        android:layout_width="match_parent"
+        android:defaultValue="5"
+        android:icon="@drawable/ic_question_answer_black_24dp"
+        android:max="10"
+        android:title="@string/settings_numberOfQuestions"
+        app:min="1"
+        app:showSeekBarValue="true"></SeekBarPreference>
+
+    <SwitchPreferenceCompat
+        android:id="@+id/switchWidget"
+        android:layout_width="match_parent"
+        android:defaultValue="true"
+        app:icon="@drawable/ic_web_asset_black_24dp"
+        app:title="@string/settings_showDialog" />
+
+</PreferenceScreen>
