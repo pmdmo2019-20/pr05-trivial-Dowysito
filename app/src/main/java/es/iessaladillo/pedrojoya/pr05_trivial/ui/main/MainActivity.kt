@@ -40,21 +40,21 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        if (viewModel.currentFrag.value==1&&settings.getBoolean(getString(R.string.prefDialog),true)){
-            DialogFragment().show(supportFragmentManager,"sure")
-//            ESTO NO FUNCIONA
+//        if (viewModel.currentFrag.value==1&&settings.getBoolean(getString(R.string.prefDialog),true)){
+//            ESTO NO FUNCIONA (NO MUESTRA EL DIALOGO)
+//            DialogFragment().show(supportFragmentManager,"sure")
 //            if (viewModel.response.value?:true){
 //                supportFragmentManager.commit {
 //                    replace(R.id.fcContent,
 //                        TitleFragment.newInstance())
 //                }
 //            }
-        }
-        else{
+//        }
+//        else{
             supportFragmentManager.commit {
                 replace(R.id.fcContent,
                     TitleFragment.newInstance())
             }
         }
-    }
+//    }
 }
