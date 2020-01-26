@@ -35,5 +35,7 @@
 
     <string name="game_won_btnNextMatch">Next Match</string>
     <string name="game_won_imgYouWin">You win</string>
+    <string name="prefQuestions">Number of questions</string>
+    <string name="prefDialog">Dialog</string>
 
 </resources>

@@ -5,16 +5,18 @@
         android:id="@+id/seekQuestion"
         android:layout_width="match_parent"
         android:defaultValue="5"
+        android:key="@string/prefQuestions"
         android:icon="@drawable/ic_question_answer_black_24dp"
         android:max="10"
         android:title="@string/settings_numberOfQuestions"
         app:min="1"
-        app:showSeekBarValue="true"></SeekBarPreference>
+        app:showSeekBarValue="true" />
 
     <SwitchPreferenceCompat
         android:id="@+id/switchWidget"
         android:layout_width="match_parent"
         android:defaultValue="true"
+        android:key="@string/prefDialog"
         app:icon="@drawable/ic_web_asset_black_24dp"
         app:title="@string/settings_showDialog" />
 

@@ -1,24 +1,41 @@
 package ui.title
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.pr05_trivial.R
 import es.iessaladillo.pedrojoya.pr05_trivial.ui.about.AboutFragment
 import es.iessaladillo.pedrojoya.pr05_trivial.ui.game.GameFragment
+import es.iessaladillo.pedrojoya.pr05_trivial.ui.main.MainActivityViewModel
 import es.iessaladillo.pedrojoya.pr05_trivial.ui.rules.RulesFragment
 import es.iessaladillo.pedrojoya.pr05_trivial.ui.settings.SettingsFragment
 import kotlinx.android.synthetic.main.fragment_title.*
 
 class TitleFragment : Fragment(R.layout.fragment_title) {
 
+    private val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(context)
+    }
+    private val viewModel: MainActivityViewModel by activityViewModels()
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViews()
+        setSettings()
+    }
+
+    private fun setSettings() {
+        viewModel.currentFrag.value=0
+        viewModel.numberQuestions=settings.getInt(getString(R.string.prefQuestions),5)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +51,7 @@ class TitleFragment : Fragment(R.layout.fragment_title) {
         inflater.inflate(R.menu.fragment_title, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
@@ -75,8 +93,9 @@ class TitleFragment : Fragment(R.layout.fragment_title) {
     }
 
     private fun play() {
-        requireFragmentManager().commit {
-            replace(R.id.fcContent, GameFragment())
+        viewModel.shuffleAndPlay()
+        requireActivity().supportFragmentManager.commit {
+            replace(R.id.fcContent, GameFragment.newInstance())
         }
     }
 
